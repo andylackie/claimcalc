@@ -1,0 +1,602 @@
+<!-- Employment Law Quiz - Webflow Fixed Version -->
+<!-- Copy this entire code block into a Custom Code element in Webflow -->
+
+<div id="employment-quiz" style="max-width: 800px; margin: 0 auto; font-family: 'Inter', sans-serif;">
+    <!-- Progress Bar -->
+    <div style="width: 100%; background-color: #e5e7eb; border-radius: 12px; height: 12px; margin-bottom: 32px;">
+        <div id="progress-fill" style="background: linear-gradient(to right, #3b82f6, #1e40af); height: 12px; border-radius: 12px; transition: width 0.5s ease-out; width: 12.5%;"></div>
+    </div>
+
+    <!-- Step 1: Hook & Engagement -->
+    <div id="step-1" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+        <h1 style="font-size: 2.5rem; font-weight: 700; text-align: center; margin-bottom: 16px; color: #1f2937;">Could You Be Owed Workplace Compensation?</h1>
+        <p style="font-size: 1.25rem; color: #6b7280; text-align: center; margin-bottom: 32px;">Find out in under 5 minutes - thousands of employees are entitled to compensation</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <button class="quiz-button" data-value="yes-believe" data-step="1" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: center;">
+                <span style="color: #10b981; margin-right: 8px;">✅</span> Yes, I believe so
+            </button>
+            <button class="quiz-button" data-value="yes-definitely" data-step="1" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: center;">
+                <span style="color: #10b981; margin-right: 8px;">✅</span> Yes, definitely
+            </button>
+            <button class="quiz-button" data-value="no-check" data-step="1" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: center;">
+                <span style="color: #3b82f6; margin-right: 8px;">❌</span> No, but I want to check
+            </button>
+            <button class="quiz-button" data-value="not-sure" data-step="1" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: center;">
+                <span style="color: #6b7280; margin-right: 8px;">❌</span> I'm not sure
+            </button>
+        </div>
+    </div>
+
+    <!-- Step 2: Employment Details -->
+    <div id="step-2" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 24px; color: #1f2937;">Tell Us About Your Employment</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 32px;">
+            <!-- Salary Slider -->
+            <div>
+                <label style="display: block; font-size: 1.125rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">Current/Most Recent Annual Salary (before tax):</label>
+                <div style="position: relative;">
+                    <input type="range" id="salary-slider" style="width: 100%; height: 8px; background: #e5e7eb; border-radius: 8px; appearance: none; cursor: pointer;" min="15000" max="200000" value="35000" step="1000">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.875rem; color: #6b7280; margin-top: 8px;">
+                        <span>£15,000</span>
+                        <span id="salary-display" style="color: #3b82f6; font-weight: 600;">£35,000</span>
+                        <span>£200,000+</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.875rem; color: #6b7280; margin-top: 8px;">Include bonuses and benefits if applicable</p>
+            </div>
+
+            <!-- Employment Status -->
+            <div>
+                <label style="display: block; font-size: 1.125rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">Employment Status:</label>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <button class="quiz-button" data-value="still-employed" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Still employed at the same company</button>
+                    <button class="quiz-button" data-value="resigned" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Left the company (resigned)</button>
+                    <button class="quiz-button" data-value="dismissed" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Was dismissed/let go</button>
+                    <button class="quiz-button" data-value="redundant" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Made redundant</button>
+                </div>
+            </div>
+
+            <!-- Employment Duration -->
+            <div>
+                <label style="display: block; font-size: 1.125rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">How long were/have you been employed there?</label>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <button class="quiz-button" data-value="less-2-years" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Less than 2 years</button>
+                    <button class="quiz-button" data-value="2-5-years" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">2-5 years</button>
+                    <button class="quiz-button" data-value="5-10-years" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">5-10 years</button>
+                    <button class="quiz-button" data-value="more-10-years" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">More than 10 years</button>
+                </div>
+            </div>
+
+            <!-- Company Size -->
+            <div>
+                <label style="display: block; font-size: 1.125rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">Company Size:</label>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <button class="quiz-button" data-value="small" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Small (under 50 employees)</button>
+                    <button class="quiz-button" data-value="medium" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Medium (50-250 employees)</button>
+                    <button class="quiz-button" data-value="large" data-step="2" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer;">Large (250+ employees)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 3: Claim Type Selection -->
+    <div id="step-3" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">What Type of Treatment Did You Experience?</h2>
+        <p style="font-size: 1.125rem; color: #6b7280; margin-bottom: 32px;">Select all that apply - most workplace issues fall into multiple categories</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <label class="quiz-button multi-select" data-value="unfair-dismissal" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Unfair dismissal</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Dismissed without proper process or fair reason</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="pay-claims" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Pay claims and disputes</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Unpaid wages, holiday pay, overtime, bonuses</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="sex-discrimination" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Sex and gender discrimination</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Treated unfairly due to gender/sex</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="constructive-dismissal" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Constructive dismissal</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Forced to resign due to employer conduct</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="disability-discrimination" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Disability discrimination</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Treated unfairly due to disability/health</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="race-discrimination" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Race and ethnicity discrimination</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Treated unfairly due to race/ethnicity</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="age-discrimination" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Age discrimination</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Treated unfairly due to your age</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="sexual-harassment" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Sexual harassment</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Unwanted sexual conduct or comments</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="maternity-discrimination" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Maternity discrimination</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Unfair treatment related to pregnancy/maternity</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="sexual-orientation-discrimination" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Sexual orientation discrimination</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Treated unfairly due to sexual orientation</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="workplace-bullying" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Workplace bullying</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Persistent intimidation or hostile behavior</div>
+                </div>
+            </label>
+            <label class="quiz-button multi-select" data-value="whistleblowing" data-step="3" style="width: 100%; padding: 16px; border-radius: 8px; border: 2px solid #e5e7eb; background: white; text-align: left; transition: all 0.3s; cursor: pointer; display: flex; align-items: flex-start; gap: 12px;">
+                <input type="checkbox" style="width: 20px; height: 20px; border: 2px solid #e5e7eb; border-radius: 4px; flex-shrink: 0; margin-top: 2px;">
+                <div>
+                    <div style="font-weight: 600; margin-bottom: 4px;">Whistleblowing</div>
+                    <div style="font-size: 0.875rem; color: #6b7280;">Retaliation for reporting wrongdoing</div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <!-- Step 4: Timeline Assessment -->
+    <div id="step-4" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">When Did This Happen?</h2>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <button class="quiz-button" data-value="within-3-months" data-step="4" style="width:100%; padding:16px; border-radius:8px; border:2px solid #e5e7eb; background:white; text-align:left;">✅ Within the last 3 months (Within time limit)</button>
+            <button class="quiz-button" data-value="3-6-months" data-step="4" style="width:100%; padding:16px; border-radius:8px; border:2px solid #e5e7eb; background:white; text-align:left;">⚠️ 3-6 months ago (Potentially within extended time limit)</button>
+            <button class="quiz-button" data-value="6-12-months" data-step="4" style="width:100%; padding:16px; border-radius:8px; border:2px solid #e5e7eb; background:white; text-align:left;">❌ 6-12 months ago (May be out of time - urgent advice needed)</button>
+            <button class="quiz-button" data-value="more-12-months" data-step="4" style="width:100%; padding:16px; border-radius:8px; border:2px solid #e5e7eb; background:white; text-align:left;">❌ More than 12 months ago (Likely out of time - exceptional circumstances only)</button>
+        </div>
+        <div id="timeline-warning" style="display:none; margin-top: 16px; padding: 16px; background:#fffbeb; border:1px solid #fef3c7; border-radius:8px; color:#92400e;">
+            ⚠️ Time limits may apply to your claim - urgent legal advice is recommended
+        </div>
+    </div>
+
+    <!-- Step 5: Conditional Evidence Questions (auto-generated based on Step 3) -->
+    <div id="step-5" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">Tell Us More About Your Situation</h2>
+        <div id="conditional-questions" style="display:flex; flex-direction:column; gap:24px;"></div>
+    </div>
+
+    <!-- Step 6: Additional Conditional (placeholder for multi-page conditional) -->
+    <div id="step-6" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">Additional Details</h2>
+        <p style="color:#6b7280;">If applicable, more follow-up questions will appear here based on your selections.</p>
+    </div>
+
+    <!-- Step 7: Evidence Strength Assessment -->
+    <div id="step-7" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 16px; color: #1f2937;">Assessing Your Case Strength</h2>
+        <div style="display:flex; flex-direction:column; gap:24px;">
+            <div>
+                <label style="display:block; font-weight:600; margin-bottom:8px;">Do you have any written evidence?</label>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <label class="quiz-button multi-select" data-step="7"><input type="checkbox" data-evidence="emails" style="margin-right:8px;"> Emails discussing the issue</label>
+                    <label class="quiz-button multi-select" data-step="7"><input type="checkbox" data-evidence="texts" style="margin-right:8px;"> Text messages/WhatsApp</label>
+                    <label class="quiz-button multi-select" data-step="7"><input type="checkbox" data-evidence="policies" style="margin-right:8px;"> Company policies that were breached</label>
+                    <label class="quiz-button multi-select" data-step="7"><input type="checkbox" data-evidence="reviews" style="margin-right:8px;"> Performance reviews/disciplinary letters</label>
+                    <label class="quiz-button multi-select" data-step="7"><input type="checkbox" data-evidence="medical" style="margin-right:8px;"> Medical certificates/fit notes</label>
+                    <label class="quiz-button multi-select" data-step="7"><input type="checkbox" data-evidence="none" style="margin-right:8px;"> No written evidence</label>
+                </div>
+            </div>
+            <div>
+                <label style="display:block; font-weight:600; margin-bottom:8px;">Are there any witnesses to what happened?</label>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <button class="quiz-button" data-value="yes-supportive" data-step="7">Yes, colleagues who would support me</button>
+                    <button class="quiz-button" data-value="yes-reluctant" data-step="7">Yes, but they might be reluctant to speak</button>
+                    <button class="quiz-button" data-value="no-witnesses" data-step="7">No direct witnesses</button>
+                    <button class="quiz-button" data-value="not-applicable" data-step="7">Not applicable</button>
+                </div>
+            </div>
+            <div>
+                <label style="display:block; font-weight:600; margin-bottom:8px;">Did you raise a formal complaint/grievance?</label>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <button class="quiz-button" data-value="yes-formal" data-step="7">Yes, formal grievance raised</button>
+                    <button class="quiz-button" data-value="yes-informal" data-step="7">Yes, informal complaint made</button>
+                    <button class="quiz-button" data-value="wanted-to" data-step="7">No, but I wanted to</button>
+                    <button class="quiz-button" data-value="didnt-know" data-step="7">No, I didn't know I could</button>
+                </div>
+            </div>
+            <div>
+                <label style="display:block; font-weight:600; margin-bottom:8px;">How would you rate the impact on you?</label>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    <button class="quiz-button" data-value="severe" data-step="7">Severe - significant financial/emotional impact</button>
+                    <button class="quiz-button" data-value="moderate" data-step="7">Moderate - noticeable impact on work/life</button>
+                    <button class="quiz-button" data-value="minor" data-step="7">Minor - some distress but manageable</button>
+                    <button class="quiz-button" data-value="uncertain" data-step="7">Uncertain about the impact</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 8: Contact Details -->
+    <div id="step-8" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 8px; color: #1f2937;">Get Your Compensation Estimate</h2>
+        <p style="color:#6b7280; margin-bottom:24px;">Enter your details to see what your claim could be worth</p>
+        <form id="contact-form" style="display:flex; flex-direction:column; gap:16px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div>
+                    <label style="display:block; font-weight:600; margin-bottom:6px;">First Name *</label>
+                    <input id="first-name" type="text" required style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:8px;">
+                </div>
+                <div>
+                    <label style="display:block; font-weight:600; margin-bottom:6px;">Last Name *</label>
+                    <input id="last-name" type="text" required style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:8px;">
+                </div>
+            </div>
+            <div>
+                <label style="display:block; font-weight:600; margin-bottom:6px;">Email Address *</label>
+                <input id="email" type="email" required style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:8px;">
+            </div>
+            <div>
+                <label style="display:block; font-weight:600; margin-bottom:6px;">Mobile Number *</label>
+                <input id="phone" type="tel" required placeholder="+44 7xxx xxx xxx" pattern="^(\+44\s?7\d{3}\s?\d{3}\s?\d{3}|07\d{3}\s?\d{3}\s?\d{3})$" style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:8px;">
+            </div>
+            <div>
+                <label style="display:block; font-weight:600; margin-bottom:6px;">Best time to contact</label>
+                <select id="contact-time" style="width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:8px;">
+                    <option value="morning">Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="evening">Evening</option>
+                </select>
+            </div>
+            <label style="display:flex; gap:10px; align-items:flex-start;">
+                <input id="consent-required" type="checkbox" required>
+                <span style="font-size:0.9rem; color:#374151;">I consent to being contacted about my potential employment claim and receiving relevant legal information. I understand I can unsubscribe at any time. *</span>
+            </label>
+            <label style="display:flex; gap:10px; align-items:flex-start;">
+                <input id="consent-optional" type="checkbox">
+                <span style="font-size:0.9rem; color:#374151;">I'd like to receive helpful employment law updates and guides</span>
+            </label>
+            <button id="submit-contact" type="submit" style="width:100%; background:#3b82f6; color:#fff; font-weight:600; padding:16px; border-radius:8px;">Calculate My Compensation →</button>
+        </form>
+    </div>
+
+    <!-- Results Page -->
+    <div id="results" class="quiz-step" style="padding: 32px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb; display: none;">
+        <div id="results-content"></div>
+        <div style="margin-top: 32px;">
+            <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 16px;">Next Steps</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <a href="#" id="book-consultation" style="display: block; text-align: center; background: #3b82f6; color: white; font-weight: 600; padding: 16px 32px; border-radius: 8px; text-decoration: none; transition: all 0.3s;">Book Free Consultation</a>
+                <a href="https://wa.me/44XXXXXXXXXX" style="display: block; text-align: center; border: 2px solid #3b82f6; color: #3b82f6; font-weight: 600; padding: 16px 32px; border-radius: 8px; text-decoration: none; transition: all 0.3s;">WhatsApp Us</a>
+            </div>
+        </div>
+        <div style="margin-top: 32px; padding: 24px; background: #f8fafc; border-radius: 8px; border: 1px solid #e5e7eb;">
+            <h4 style="font-weight: 600; margin-bottom: 16px;">Legal Disclaimer</h4>
+            <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 8px;">The estimate provided is for guidance only and does not constitute legal advice. Actual compensation may vary based on individual circumstances. All communications are confidential and subject to legal professional privilege where applicable.</p>
+            <p style="font-size: 0.875rem; color: #6b7280;">This assessment is based on current UK employment law and tribunal statistics. Time limits apply to most employment claims. For accurate legal advice specific to your situation, please book a consultation with one of our qualified employment lawyers.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Quiz State Management
+let quizData = {
+    currentStep: 1,
+    totalSteps: 8,
+    answers: {},
+    claimTypes: [],
+    salary: 35000,
+    timeline: null,
+    amountOwed: 0
+};
+
+// Initialize Quiz
+function initQuiz() {
+    console.log('Quiz initializing...');
+    
+    // Salary slider
+    const salarySlider = document.getElementById('salary-slider');
+    const salaryDisplay = document.getElementById('salary-display');
+    
+    if (salarySlider && salaryDisplay) {
+        salarySlider.addEventListener('input', function() {
+            const value = parseInt(this.value);
+            quizData.salary = value;
+            salaryDisplay.textContent = `£${value.toLocaleString()}`;
+        });
+    }
+
+    // Checkbox styling
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const button = this.closest('.quiz-button');
+            if (this.checked) {
+                button.style.borderColor = '#3b82f6';
+                button.style.backgroundColor = '#eff6ff';
+            } else {
+                button.style.borderColor = '#e5e7eb';
+                button.style.backgroundColor = 'white';
+            }
+        });
+    });
+
+    // Button click handlers
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('quiz-button') || e.target.closest('.quiz-button')) {
+            const button = e.target.classList.contains('quiz-button') ? e.target : e.target.closest('.quiz-button');
+            
+            if (button && button.dataset.value) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Button clicked:', button.dataset.value);
+                handleAnswer(button);
+            }
+        }
+    });
+    
+    // Contact form submit => gate results
+    const form = document.getElementById('contact-form');
+    if (form) {
+        form.addEventListener('submit', function(ev){
+            ev.preventDefault();
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const contactTime = document.getElementById('contact-time').value;
+            const consentRequired = document.getElementById('consent-required').checked;
+            const consentOptional = document.getElementById('consent-optional').checked;
+            if (!consentRequired) return;
+            quizData.contact = { firstName, lastName, email, phone, contactTime, consentRequired, consentOptional };
+            const estimate = calculateEstimate();
+            // Show results
+            const step8 = document.getElementById('step-8');
+            if (step8) step8.style.display = 'none';
+            showResults(estimate);
+        });
+    }
+    
+    updateProgress();
+}
+
+function handleAnswer(button) {
+    const step = quizData.currentStep;
+    const value = button.dataset.value;
+    
+    console.log('Handling answer:', value, 'for step:', step);
+    
+    // Remove previous selections for single-select questions
+    if (step !== 3) { // Step 3 is multi-select
+        const parent = button.parentElement;
+        if (parent) {
+            parent.querySelectorAll('.quiz-button').forEach(btn => {
+                btn.style.borderColor = '#e5e7eb';
+                btn.style.backgroundColor = 'white';
+            });
+        }
+    }
+    
+    button.style.borderColor = '#3b82f6';
+    button.style.backgroundColor = '#eff6ff';
+    
+    // Store answer
+    if (step === 3) {
+        // Multi-select for claim types
+        if (!quizData.claimTypes.includes(value)) {
+            quizData.claimTypes.push(value);
+        } else {
+            quizData.claimTypes = quizData.claimTypes.filter(type => type !== value);
+        }
+    } else {
+        quizData.answers[`step_${step}`] = value;
+    }
+
+    // Step-specific effects
+    if (step === 4) {
+        quizData.timeline = value;
+        const warn = document.getElementById('timeline-warning');
+        if (warn) {
+            if (value === '6-12-months' || value === 'more-12-months') warn.style.display = 'block';
+            else warn.style.display = 'none';
+        }
+    }
+
+    console.log('Quiz data:', quizData);
+
+    // Move to next step
+    setTimeout(() => {
+        nextStep();
+    }, 300);
+}
+
+function nextStep() {
+    console.log('Moving to next step...');
+    
+    const currentStepEl = document.getElementById(`step-${quizData.currentStep}`);
+    if (currentStepEl) {
+        currentStepEl.style.display = 'none';
+    }
+    
+    quizData.currentStep++;
+    
+    if (quizData.currentStep <= quizData.totalSteps) {
+        const nextStepEl = document.getElementById(`step-${quizData.currentStep}`);
+        if (nextStepEl) {
+            nextStepEl.style.display = 'block';
+            updateProgress();
+            if (quizData.currentStep === 5) {
+                renderConditionalQuestions();
+            }
+        }
+    } else {
+        // Results only shown after contact form submit
+    }
+}
+
+function showResults(passedEstimate) {
+    console.log('Showing results...');
+    const estimate = passedEstimate || calculateEstimate();
+    const resultsContent = document.getElementById('results-content');
+    if (resultsContent) {
+        const timeLimiter = (quizData.timeline === '6-12-months' || quizData.timeline === 'more-12-months');
+        const strengthText = estimate.strength === 'strong' ? 'strong case with good evidence' : (estimate.strength === 'good' ? 'good case, additional evidence could strengthen your claim' : 'case requiring further investigation');
+        const header = timeLimiter ? `<div style="background:#fef2f2; border:1px solid #fecaca; color:#991b1b; padding:12px 16px; border-radius:8px; margin-bottom:12px;">⚠️ URGENT: Time limits may apply. Immediate legal advice is essential.</div>` : '';
+        resultsContent.innerHTML = `
+            ${header}
+            <div style="background: linear-gradient(to bottom right, #f0fdf4, white, #f0fdf4); border-radius: 8px; padding: 32px; border: 1px solid #bbf7d0;">
+                <h2 style="font-size: 2rem; font-weight: 700; color: #10b981; margin-bottom: 16px;">You Could Be Entitled To: £${estimate.min.toLocaleString()} - £${estimate.max.toLocaleString()}</h2>
+                <p style="font-size: 1.125rem; margin-bottom: 16px;">Based on your responses, you appear to have a ${strengthText}.</p>
+                <div style="margin-top:12px;">
+                    ${(estimate.breakdown || []).map(b => `<div style=\"display:flex; justify-content:space-between; padding:6px 0;\"><span>${b.type}</span><span>£${b.min.toLocaleString()} - £${b.max.toLocaleString()}</span></div>`).join('')}
+                </div>
+            </div>
+        `;
+    }
+    const results = document.getElementById('results');
+    if (results) results.style.display = 'block';
+}
+
+function calculateEstimate() {
+    let min = 0;
+    let max = 0;
+    const breakdown = [];
+    // Unfair dismissal
+    if (quizData.claimTypes.includes('unfair-dismissal')) {
+        const weekly = quizData.salary / 52;
+        const years = mapYearsService(quizData.answers.step_2);
+        const ageMult = 1.5;
+        const basic = Math.min(weekly * years * ageMult, 17130);
+        const compensatory = Math.min(weekly * 52, 115115);
+        const partMin = Math.round(basic);
+        const partMax = Math.round(basic + compensatory);
+        breakdown.push({ type: 'Unfair Dismissal', min: partMin, max: partMax });
+        min += partMin; max += partMax;
+    }
+    // Pay claims
+    if (quizData.claimTypes.includes('pay-claims')) {
+        const owed = Number(quizData.amountOwed || 3000);
+        const partMin = Math.max(owed, 1000);
+        const partMax = Math.max(Math.round(owed * 1.5), 5000);
+        breakdown.push({ type: 'Pay Claims', min: partMin, max: partMax });
+        min += partMin; max += partMax;
+    }
+    // Discrimination injury to feelings (simplified Vento bands)
+    const discrim = quizData.claimTypes.filter(ct => ['sex-discrimination','disability-discrimination','race-discrimination','age-discrimination','sexual-orientation-discrimination','maternity-discrimination'].includes(ct));
+    if (discrim.length) {
+        const lower = 1100, upper = 33700;
+        breakdown.push({ type: 'Injury to Feelings', min: lower * discrim.length, max: upper * discrim.length });
+        min += lower * discrim.length; max += upper * discrim.length;
+    }
+    // Case strength
+    const strength = scoreCaseStrength();
+    let mult = 1.0; if (strength === 'good') mult = 0.7; if (strength === 'weak') mult = 0.4;
+    if (quizData.timeline === '6-12-months' || quizData.timeline === 'more-12-months') mult = Math.min(mult, 0.5);
+    min = Math.round(min * mult); max = Math.round(max * mult);
+    return { min: Math.max(min, 1000), max: Math.max(max, 3000), strength, breakdown };
+}
+
+function scoreCaseStrength() {
+    let score = 0;
+    const written = Array.from(document.querySelectorAll('[data-evidence]')).filter(i => i.checked).map(i => i.getAttribute('data-evidence'));
+    if (written.length > 0 && !written.includes('none')) score += 30;
+    const v = quizData.answers.step_7;
+    if (v === 'yes-supportive') score += 25; else if (v === 'yes-reluctant') score += 15;
+    if (v === 'yes-formal') score += 20; else if (v === 'yes-informal') score += 10;
+    if (v === 'severe') score += 25; else if (v === 'moderate') score += 15;
+    if (score >= 70) return 'strong'; if (score >= 40) return 'good'; return 'weak';
+}
+
+function mapYearsService(val) {
+    switch(val) {
+        case 'less-2-years': return 1;
+        case '2-5-years': return 3.5;
+        case '5-10-years': return 7.5;
+        case 'more-10-years': return 12;
+        default: return 2;
+    }
+}
+
+function renderConditionalQuestions() {
+    const el = document.getElementById('conditional-questions');
+    if (!el) return;
+    let html = '';
+    const add = s => { html += s; };
+    quizData.claimTypes.forEach(ct => {
+        if (ct === 'unfair-dismissal') add(sectionUnfairDismissal());
+        if (ct === 'pay-claims') add(sectionPayClaims());
+        if (ct === 'sex-discrimination') add(sectionSexDiscrimination());
+        if (ct === 'disability-discrimination') add(sectionDisabilityDiscrimination());
+        if (ct === 'race-discrimination') add(sectionRaceDiscrimination());
+        if (ct === 'age-discrimination') add(sectionAgeDiscrimination());
+        if (ct === 'constructive-dismissal') add(sectionConstructiveDismissal());
+        if (ct === 'sexual-harassment') add(sectionSexualHarassment());
+        if (ct === 'maternity-discrimination') add(sectionMaternityDiscrimination());
+        if (ct === 'sexual-orientation-discrimination') add(sectionOrientationDiscrimination());
+        if (ct === 'workplace-bullying') add(sectionWorkplaceBullying());
+        if (ct === 'whistleblowing') add(sectionWhistleblowing());
+    });
+    el.innerHTML = html || '<p style="color:#6b7280;">No specific follow-ups required. Continue to the next step.</p>';
+}
+
+function updateProgress() {
+    const progress = (quizData.currentStep / quizData.totalSteps) * 100;
+    const progressFill = document.getElementById('progress-fill');
+    if (progressFill) {
+        progressFill.style.width = `${progress}%`;
+    }
+}
+
+// Conditional sections (HTML generators)
+function sectionUnfairDismissal(){return `<div><h3 style="font-weight:700; margin-bottom:8px;">Unfair Dismissal Details</h3><div style="display:flex; flex-direction:column; gap:8px;"><label class="quiz-button multi-select"><input type="checkbox" style="margin-right:8px;"> No reason given</label><label class="quiz-button multi-select"><input type="checkbox" style="margin-right:8px;"> Performance issues</label><label class="quiz-button multi-select"><input type="checkbox" style="margin-right:8px;"> Misconduct allegations</label><label class="quiz-button multi-select"><input type="checkbox" style="margin-right:8px;"> Redundancy (but others kept on)</label></div><div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;"><button class="quiz-button" data-value="no-process" data-step="5">No investigation or meetings</button><button class="quiz-button" data-value="brief-process" data-step="5">Very brief/unfair process</button><button class="quiz-button" data-value="some-process" data-step="5">Some process but felt unfair</button><button class="quiz-button" data-value="not-sure" data-step="5">Not sure about the process</button></div></div>`}
+function sectionPayClaims(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Pay Claims Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Unpaid wages/salary</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Unpaid holiday pay</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Unpaid overtime</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Unpaid bonuses/commission</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Incorrect final pay/deductions</label></div><div style=\"margin-top:12px;\"><label style=\"display:block; font-weight:600; margin-bottom:6px;\">How much are you owed approximately?</label><input id=\"amount-owed\" type=\"number\" placeholder=\"£0\" style=\"width:100%; padding:12px; border:1px solid #e5e7eb; border-radius:8px;\" oninput=\"quizData.amountOwed=this.value\"></div></div>`}
+function sectionSexDiscrimination(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Sex/Gender Discrimination Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Passed over for promotion</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Paid less than male colleagues</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Inappropriate comments about gender</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Treated differently due to pregnancy/maternity</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Excluded from opportunities</label></div></div>`}
+function sectionDisabilityDiscrimination(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Disability Discrimination Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Refused reasonable adjustments</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Dismissed due to sickness/disability</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Harassment about disability</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Denied equal opportunities</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Disciplined for disability-related absence</label></div></div>`}
+function sectionRaceDiscrimination(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Race/Ethnicity Discrimination Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Racial slurs or comments</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Passed over for promotion</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Different treatment from colleagues</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Excluded from workplace activities</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Disciplined more harshly than others</label></div></div>`}
+function sectionAgeDiscrimination(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Age Discrimination Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Comments about my age</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Passed over for promotion due to age</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Made redundant (younger staff kept)</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Excluded from training/opportunities</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Pressured to retire</label></div></div>`}
+function sectionConstructiveDismissal(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Constructive Dismissal Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Significant changes to role/responsibilities without agreement</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Reduction in pay or benefits</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Bullying or harassment by management</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Breach of health and safety obligations</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Failure to investigate grievances properly</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Impossible working conditions or unrealistic demands</label></div></div>`}
+function sectionSexualHarassment(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Sexual Harassment Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Unwanted physical contact or touching</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Sexual comments or jokes</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Requests for sexual favors</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Displaying sexual images or materials</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Inappropriate sexual messages/emails</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Creating a sexually hostile work environment</label></div></div>`}
+function sectionMaternityDiscrimination(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Maternity Discrimination Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Dismissed or made redundant during pregnancy/maternity</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Denied promotion due to pregnancy/maternity plans</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Role changed or responsibilities reduced</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Refused flexible working or reasonable adjustments</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Harassment about pregnancy/maternity leave</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Different treatment upon return from maternity leave</label></div></div>`}
+function sectionOrientationDiscrimination(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Sexual Orientation Discrimination Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Offensive comments about sexual orientation</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Excluded from workplace social activities</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Passed over for promotion due to sexual orientation</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Different treatment from colleagues</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Harassment or bullying related to sexual orientation</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Denied equal opportunities or benefits</label></div></div>`}
+function sectionWorkplaceBullying(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Workplace Bullying Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Verbal abuse, shouting, or aggressive behavior</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Public humiliation or embarrassment</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Excessive criticism or impossible targets</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Exclusion from meetings or workplace activities</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Spreading rumors or undermining reputation</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Threats or intimidation</label></div></div>`}
+function sectionWhistleblowing(){return `<div><h3 style=\"font-weight:700; margin-bottom:8px;\">Whistleblowing Details</h3><div style=\"display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Dismissed or made redundant</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Demoted or role changed</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Excluded from meetings or decision-making</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Colleagues turned against me</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Investigation was inadequate or biased</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Suffered harassment or victimization</label></div><div style=\"margin-top:12px; display:flex; flex-direction:column; gap:8px;\"><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Health and safety violations</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Financial misconduct or fraud</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Legal breaches or regulatory violations</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Environmental damage or concerns</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Cover-up of wrongdoing</label><label class=\"quiz-button multi-select\"><input type=\"checkbox\" style=\"margin-right:8px;\"> Danger to public health or safety</label></div></div>`}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initQuiz);
+} else {
+    initQuiz();
+}
+
+// Fallback initialization
+setTimeout(initQuiz, 100);
+</script>
+
+<!-- End of Webflow Embed Code -->
