@@ -186,7 +186,11 @@
         { id: 'pay-claims', icon: '💰' },
         { id: 'whistleblowing', icon: '📣' },
         { id: 'redundancy', icon: '✂️' },
-        { id: 'constructive-dismissal', icon: '🚶' }
+        { id: 'constructive-dismissal', icon: '🚶' },
+        { id: 'victimisation', icon: '🎯' },
+        { id: 'age-discrimination', icon: '👴' },
+        { id: 'disability-discrimination', icon: '♿' },
+        { id: 'pregnancy-discrimination', icon: '🤱' }
     ];
     return claims.map(claim => `<label class="wfq-claim-label">${claim.icon} <span>${claim.id.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span><input type="checkbox" data-claim="${claim.id}" /></label>`).join('');
   }
@@ -221,7 +225,13 @@
         const group = choiceBtn.closest('.wfq-btn-group');
         group.querySelectorAll('.wfq-btn').forEach(btn => btn.classList.remove('selected'));
         choiceBtn.classList.add('selected');
-        state.answers[`step_${step}`] = value;
+        
+        // Check if this is a conditional question
+        if (step && step.toString().startsWith('conditional_')) {
+          state.answers[step] = value;
+        } else {
+          state.answers[`step_${step}`] = value;
+        }
 
         // Auto-advance for specific steps
         if ([1, 4].includes(step)) {
@@ -293,17 +303,104 @@
     const step3Btn = document.querySelector('#wfq-step-3 .wfq-continue-btn');
     if(step3Btn) step3Btn.disabled = state.claims.length === 0;
 
+    const step5Btn = document.querySelector('#wfq-step-5 .wfq-continue-btn');
+    if(step5Btn) {
+      // Check if all conditional questions have been answered
+      const conditionalAnswers = Object.keys(state.answers).filter(key => key.startsWith('conditional_'));
+      const expectedAnswers = state.claims.length;
+      step5Btn.disabled = conditionalAnswers.length < expectedAnswers;
+    }
+
     if (state.step === 5) renderConditionalQuestions();
   }
 
   function renderConditionalQuestions() {
-    // This is a simplified version. A full implementation would be more complex.
     const container = document.getElementById('wfq-conditional-questions');
     if (state.claims.length === 0) {
         container.innerHTML = `<p style="text-align:center; color:#9ca3af;">Please go back and select a claim type first.</p>`;
         return;
     }
-    container.innerHTML = `<p style="text-align:center;">Conditional questions would appear here based on claims: <strong>${state.claims.join(', ')}</strong></p>`;
+    
+    let html = '';
+    state.claims.forEach(claim => {
+        const questions = getConditionalQuestionsFor(claim);
+        if (questions) {
+            html += `
+              <div class="wfq-conditional-section">
+                <h3>${questions.title}</h3>
+                <p>${questions.prompt}</p>
+                <div class="wfq-btn-group">${renderButtons(questions.options, `conditional_${claim}`)}</div>
+              </div>
+            `;
+        }
+    });
+    container.innerHTML = html;
+  }
+
+  function getConditionalQuestionsFor(claim) {
+    const allQuestions = {
+        'unfair-dismissal': { 
+            title: 'Unfair Dismissal Details',
+            prompt: 'What was the reason given for your dismissal?',
+            options: ['performance', 'conduct', 'redundancy', 'no-reason-given', 'capability', 'other']
+        },
+        'discrimination': { 
+            title: 'Discrimination Details',
+            prompt: 'On what grounds do you feel you were discriminated against?',
+            options: ['age', 'gender', 'race', 'disability', 'religion', 'sexual-orientation', 'pregnancy', 'other']
+        },
+        'harassment': { 
+            title: 'Harassment Details',
+            prompt: 'What type of harassment did you experience?',
+            options: ['sexual-harassment', 'verbal-abuse', 'threats', 'intimidation', 'isolation', 'other']
+        },
+        'bullying': { 
+            title: 'Bullying Details',
+            prompt: 'Who was responsible for the bullying?',
+            options: ['manager', 'colleague', 'multiple-people', 'systematic', 'other']
+        },
+        'pay-claims': { 
+            title: 'Pay Claims Details',
+            prompt: 'What type of pay issues do you have?',
+            options: ['unpaid-wages', 'holiday-pay', 'overtime', 'bonus', 'commission', 'notice-pay', 'other']
+        },
+        'whistleblowing': { 
+            title: 'Whistleblowing Details',
+            prompt: 'What did you report?',
+            options: ['health-safety', 'financial-misconduct', 'legal-violation', 'ethical-concern', 'other']
+        },
+        'redundancy': { 
+            title: 'Redundancy Details',
+            prompt: 'Was the redundancy genuine?',
+            options: ['genuine', 'fake-redundancy', 'no-consultation', 'insufficient-notice', 'other']
+        },
+        'constructive-dismissal': { 
+            title: 'Constructive Dismissal Details',
+            prompt: 'What forced you to resign?',
+            options: ['breach-of-contract', 'hostile-environment', 'forced-resignation', 'other']
+        },
+        'victimisation': { 
+            title: 'Victimisation Details',
+            prompt: 'What happened after you complained?',
+            options: ['dismissal', 'demotion', 'harassment', 'isolation', 'other']
+        },
+        'age-discrimination': { 
+            title: 'Age Discrimination Details',
+            prompt: 'How were you treated differently due to your age?',
+            options: ['dismissal', 'overlooked-promotion', 'redundancy', 'comments', 'other']
+        },
+        'disability-discrimination': { 
+            title: 'Disability Discrimination Details',
+            prompt: 'How were you treated due to your disability?',
+            options: ['no-reasonable-adjustments', 'dismissal', 'harassment', 'overlooked-promotion', 'other']
+        },
+        'pregnancy-discrimination': { 
+            title: 'Pregnancy Discrimination Details',
+            prompt: 'How were you treated during pregnancy?',
+            options: ['dismissal', 'harassment', 'overlooked-promotion', 'redundancy', 'other']
+        }
+    };
+    return allQuestions[claim];
   }
 
   function calculateResult() {
